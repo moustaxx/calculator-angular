@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  height: 100%;
+  overflow: hidden;
+  width: 500px;
+  height: 650px
+}
+.numbers {
+  padding: 32px 16px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  width: 100%;
+  height: 20%;
+  background-color: grey;
+  box-sizing: border-box;
+}
+.symbolsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 80%;
+}
+.symbol {
+  font-size: 32px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.symbol:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
