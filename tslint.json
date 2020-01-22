@@ -8,6 +8,7 @@
     },
     "component-class-suffix": true,
     "contextual-lifecycle": true,
+    "curly":false,
     "directive-class-suffix": true,
     "directive-selector": [
       true,
@@ -66,6 +67,7 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
+    "one-line": false,
     "ordered-imports": false,
     "quotemark": [
       true,

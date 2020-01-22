@@ -1,12 +1,12 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 650px;
   box-sizing: border-box;
   border: 1px solid grey;
   height: 100%;
   overflow: hidden;
-  width: 500px;
+  width: 600px;
   height: 650px
 }
 .numbers {
@@ -23,26 +23,7 @@
 }
 .symbolsContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   height: 80%;
-}
-.symbol {
-  font-size: 32px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  .content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-.symbol:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
 }
 
