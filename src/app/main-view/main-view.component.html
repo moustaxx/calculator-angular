@@ -1,6 +1,7 @@
 <div class="wrapper">
   <div class="numbers">
-    <p>main-view works!</p>
+    <p *ngIf="!mathOperation.length">0</p>
+    <p>{{ mathOperation.join(' ') }}</p>
   </div>
   <div class="symbolsContainer">
     <app-number-button
