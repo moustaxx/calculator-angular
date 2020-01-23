@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+const isNumber = (value: any) => {
+  if (typeof value !== 'string' && typeof value !== 'number') return false;
+  return isNaN(Number(value)) || value === '' ? false : true;
+};
+
 const buttonsContent = [
   1, 2, 3, '÷', 'pow',
   4, 5, 6, '×', 'sqrt',
@@ -17,8 +22,16 @@ export class MainViewComponent {
   mathOperation: string[] = [];
 
   undoLastOperation() {
+    const lastOp = this.getLastOperation() || '';
     const poppedMathOperation = this.mathOperation.slice(0, -1);
-    this.mathOperation = poppedMathOperation;
+
+    if (!isNumber(lastOp) || lastOp.length < 2) {
+      this.mathOperation = poppedMathOperation;
+      return;
+    }
+
+    const newLastOp = lastOp.slice(0, -1);
+    this.mathOperation = [...poppedMathOperation, newLastOp];
   }
 
   clearMathOperations() {
@@ -35,7 +48,7 @@ export class MainViewComponent {
 
   concatLastOperation(operation: number) {
     const lastOp = this.getLastOperation() || '';
-    if (!Number(lastOp)) {
+    if (!isNumber(lastOp)) {
       this.addOperation(String(operation));
       return;
     }
@@ -52,9 +65,15 @@ export class MainViewComponent {
 
   handleDot() {
     const lastOp = this.getLastOperation();
-    if (lastOp?.includes('.') || !Number(lastOp)) return;
-    const concatedOp = `${lastOp}.`;
+
+    if (lastOp === null || lastOp === undefined) {
+      this.mathOperation = ['0.'];
+      return;
+    }
+    if (lastOp?.includes('.') || !isNumber(lastOp)) return;
+
     const opsWithoutLast = this.mathOperation.slice(0, -1);
+    const concatedOp = `${lastOp}.`;
 
     this.mathOperation = [...opsWithoutLast, concatedOp];
   }
@@ -78,6 +97,8 @@ export class MainViewComponent {
           this.concatLastOperation(event);
           return;
         }
+        const lastOp = this.getLastOperation();
+        if (!isNumber(lastOp) || lastOp === undefined) return;
 
         this.addOperation(event);
         break;
