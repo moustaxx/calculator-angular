@@ -84,6 +84,12 @@ export class MainViewComponent {
     this.mathExpression = [...opsWithoutLast, concatedOp];
   }
 
+  handleMinus() {
+    const lastOp = this.getLastOperation();
+    if (lastOp === '-') return;
+    this.addOperation('-');
+  }
+
   dispatchAction(event: TButtonItemContent) {
     switch (event) {
       case 'C':
@@ -92,11 +98,14 @@ export class MainViewComponent {
       case 'CE':
         this.clearMathExpression();
         break;
-      case '=':
+        case '=':
         this.getResult();
         break;
       case '.':
         this.handleDot();
+        break;
+      case '-':
+        this.handleMinus();
         break;
       default:
         if (typeof event === 'number') {
