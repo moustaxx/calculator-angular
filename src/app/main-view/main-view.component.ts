@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import mexp from 'math-expression-evaluator';
 
 const isNumber = (value: any) => {
   if (typeof value !== 'string' && typeof value !== 'number') return false;
@@ -39,7 +40,12 @@ export class MainViewComponent {
   }
 
   getResult() {
-
+    const expression = this.mathExpression
+      .join('')
+      .replace('÷', '/')
+      .replace('×', '*');
+    const result = mexp.eval(expression);
+    this.mathExpression = [String(result)];
   }
 
   getLastOperation() {
@@ -84,7 +90,7 @@ export class MainViewComponent {
         this.undoLastOperation();
         break;
       case 'CE':
-        this.clearMathOperations();
+        this.clearMathExpression();
         break;
       case '=':
         this.getResult();
