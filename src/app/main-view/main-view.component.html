@@ -1,7 +1,10 @@
 <div class="wrapper">
   <div class="mathExpression">
-    <p *ngIf="!mathExpression.length">0</p>
-    <p>{{ mathExpression.join(' ') }}</p>
+    <span *ngIf="!mathExpression.length">0</span>
+    <span>{{ mathExpression.join(' ') }}</span>
+    <div class="instantResult">
+      <span *ngIf="instantResult">{{ instantResult }}</span>
+    </div>
   </div>
   <div class="numpadContainer">
     <app-number-button

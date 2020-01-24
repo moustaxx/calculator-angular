@@ -21,6 +21,7 @@ type TButtonItemContent = typeof buttonsContent[number];
 export class MainViewComponent {
   buttonsContent = buttonsContent;
   mathExpression: string[] = [];
+  instantResult: number | null = null;
 
   undoLastOperation() {
     const lastOp = this.getLastOperation() || '';
@@ -37,15 +38,34 @@ export class MainViewComponent {
 
   clearMathExpression() {
     this.mathExpression = [];
+    this.instantResult = null;
+  }
+
+  getMathExpressionString() {
+    return this.mathExpression
+      .join('')
+      .split('÷').join('/')
+      .split('×').join('*');
   }
 
   getResult() {
-    const expression = this.mathExpression
-      .join('')
-      .replace('÷', '/')
-      .replace('×', '*');
+    const expression = this.getMathExpressionString();
     const result = mexp.eval(expression);
     this.mathExpression = [String(result)];
+    this.instantResult = null;
+  }
+
+  getInstantResult() {
+    const lastOp = this.getLastOperation();
+    if (!isNumber(lastOp)) return;
+
+    const expression = this.getMathExpressionString();
+    try {
+      const result = mexp.eval(expression);
+      this.instantResult = result;
+    } catch (error) {
+      this.instantResult = null;
+    }
   }
 
   getLastOperation() {
@@ -94,11 +114,12 @@ export class MainViewComponent {
     switch (event) {
       case 'C':
         this.undoLastOperation();
+        this.getInstantResult();
         break;
       case 'CE':
         this.clearMathExpression();
         break;
-        case '=':
+      case '=':
         this.getResult();
         break;
       case '.':
@@ -110,6 +131,7 @@ export class MainViewComponent {
       default:
         if (typeof event === 'number') {
           this.concatLastOperation(event);
+          this.getInstantResult();
           return;
         }
         const lastOp = this.getLastOperation();
