@@ -9,7 +9,7 @@
   width: 600px;
   height: 650px
 }
-.numbers {
+.mathExpression {
   padding: 32px 16px;
   margin: 0 auto;
   display: flex;
@@ -21,7 +21,7 @@
   background-color: grey;
   box-sizing: border-box;
 }
-.symbolsContainer {
+.numpadContainer {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   height: 80%;
