@@ -19,23 +19,23 @@ type TButtonItemContent = typeof buttonsContent[number];
 })
 export class MainViewComponent {
   buttonsContent = buttonsContent;
-  mathOperation: string[] = [];
+  mathExpression: string[] = [];
 
   undoLastOperation() {
     const lastOp = this.getLastOperation() || '';
-    const poppedMathOperation = this.mathOperation.slice(0, -1);
+    const poppedMathExpression = this.mathExpression.slice(0, -1);
 
     if (!isNumber(lastOp) || lastOp.length < 2) {
-      this.mathOperation = poppedMathOperation;
+      this.mathExpression = poppedMathExpression;
       return;
     }
 
     const newLastOp = lastOp.slice(0, -1);
-    this.mathOperation = [...poppedMathOperation, newLastOp];
+    this.mathExpression = [...poppedMathExpression, newLastOp];
   }
 
-  clearMathOperations() {
-    this.mathOperation = [];
+  clearMathExpression() {
+    this.mathExpression = [];
   }
 
   getResult() {
@@ -43,7 +43,7 @@ export class MainViewComponent {
   }
 
   getLastOperation() {
-    return this.mathOperation[this.mathOperation.length - 1] || null;
+    return this.mathExpression[this.mathExpression.length - 1] || null;
   }
 
   concatLastOperation(operation: number) {
@@ -54,28 +54,28 @@ export class MainViewComponent {
     }
     const parsedOperation = operation;
     const concatedOp = `${lastOp}${parsedOperation}`;
-    const opsWithoutLast = this.mathOperation.slice(0, -1);
+    const opsWithoutLast = this.mathExpression.slice(0, -1);
 
-    this.mathOperation = [...opsWithoutLast, concatedOp];
+    this.mathExpression = [...opsWithoutLast, concatedOp];
   }
 
   addOperation(op: string) {
-    this.mathOperation = [...(this.mathOperation || []), op];
+    this.mathExpression = [...(this.mathExpression || []), op];
   }
 
   handleDot() {
     const lastOp = this.getLastOperation();
 
     if (lastOp === null || lastOp === undefined) {
-      this.mathOperation = ['0.'];
+      this.mathExpression = ['0.'];
       return;
     }
     if (lastOp?.includes('.') || !isNumber(lastOp)) return;
 
-    const opsWithoutLast = this.mathOperation.slice(0, -1);
+    const opsWithoutLast = this.mathExpression.slice(0, -1);
     const concatedOp = `${lastOp}.`;
 
-    this.mathOperation = [...opsWithoutLast, concatedOp];
+    this.mathExpression = [...opsWithoutLast, concatedOp];
   }
 
   dispatchAction(event: TButtonItemContent) {
