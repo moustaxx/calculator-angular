@@ -78,6 +78,9 @@ export class MainViewComponent {
       this.addOperation(String(operation));
       return;
     }
+    if (lastOp.length >= 1 && lastOp[0] === '0' && lastOp[1] !== '.') {
+       return;
+    } 
     const parsedOperation = operation;
     const concatedOp = `${lastOp}${parsedOperation}`;
     const opsWithoutLast = this.mathExpression.slice(0, -1);
