@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import mexp from 'math-expression-evaluator';
 
 const isNumber = (value: any) => {
@@ -18,10 +18,16 @@ type TButtonItemContent = typeof buttonsContent[number];
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss']
 })
-export class MainViewComponent {
+export class MainViewComponent implements AfterViewChecked {
   buttonsContent = buttonsContent;
   mathExpression: string[] = [];
   instantResult: number | null = null;
+
+  @ViewChild('mathExprDiv') mathExprDiv: ElementRef<HTMLDivElement> | null = null;
+
+  ngAfterViewChecked() {
+    this.scrollExpressionToRight();
+  }
 
   undoLastOperation() {
     const lastOp = this.getLastOperation() || '';
@@ -72,6 +78,11 @@ export class MainViewComponent {
     return this.mathExpression[this.mathExpression.length - 1] || null;
   }
 
+  scrollExpressionToRight() {
+    const mathExprDiv = this.mathExprDiv?.nativeElement;
+    mathExprDiv?.scrollTo(1000000, 0);
+  }
+
   concatLastOperation(operation: number) {
     const lastOp = this.getLastOperation() || '';
     if (!isNumber(lastOp)) {
@@ -79,8 +90,8 @@ export class MainViewComponent {
       return;
     }
     if (lastOp.length >= 1 && lastOp[0] === '0' && lastOp[1] !== '.') {
-       return;
-    } 
+      return;
+    }
     const parsedOperation = operation;
     const concatedOp = `${lastOp}${parsedOperation}`;
     const opsWithoutLast = this.mathExpression.slice(0, -1);

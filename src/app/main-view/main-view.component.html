@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <div class="mathExpression">
-    <span *ngIf="!mathExpression.length">0</span>
-    <span>{{ mathExpression.join(' ') }}</span>
+  <div class="mathExpressionWrapper">
+    <span class="mathExpression" *ngIf="!mathExpression.length">0</span>
+    <div class="mathExpression" #mathExprDiv>{{ mathExpression.join(' ') }}</div>
     <div class="instantResult">
       <span *ngIf="instantResult">{{ instantResult }}</span>
     </div>
