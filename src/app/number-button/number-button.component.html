@@ -1,5 +1,9 @@
-<button mat-icon-button class="numberButton" (click)="this.handleClick()">
-  <div class="content">
-    <div>{{ content }}</div>
-  </div>
-</button>
+<div
+  class="numberButton" 
+  (click)="this.handleClick()"
+  matRipple
+  matRippleCentered="true"
+  matRippleUnbounded="true"
+>
+  {{ content }}
+</div>
