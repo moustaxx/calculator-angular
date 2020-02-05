@@ -7,7 +7,8 @@
   height: 100%;
   overflow: hidden;
   width: 400px;
-  height: 470px
+  height: 470px;
+  position: relative;
 }
 .mathExpressionWrapper {
   position: relative;
@@ -21,7 +22,8 @@
   line-height: 1;
 }
 .mathExpression {
-  padding: 10% 16px;
+  padding: 0 16px;
+  padding-top: 10%;
   overflow: overlay;
   overflow-wrap: normal;
   white-space: nowrap;
@@ -37,8 +39,9 @@
   grid-template-columns: repeat(5, 1fr);
   height: 70%;
 }
-.menuBtn {
+.menuBtnWrapper {
+  z-index: 1;
   position: absolute;
   right: 1%;
-  top: 2%;
+  top: 1%;
 }

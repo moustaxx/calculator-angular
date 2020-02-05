@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button class="backBtn" aria-label="Back" [routerLink]="'/'">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span class="headingText">Settings</span>
+      <app-menu></app-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="content">
+    <mat-list>
+      <mat-list-item>
+        <span class="settingsListItem">Pepper</span>
+        <mat-slide-toggle color="primary"></mat-slide-toggle>
+      </mat-list-item>
+      <mat-list-item>
+        <span class="settingsListItem">Salt</span>
+        <mat-slide-toggle color="primary"></mat-slide-toggle>
+      </mat-list-item>
+      <mat-list-item>
+        <span class="settingsListItem">Paprika</span>
+        <mat-slide-toggle color="primary"></mat-slide-toggle>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

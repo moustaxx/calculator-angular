@@ -10,18 +10,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { MainViewComponent } from './main-view/main-view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NumberButtonComponent } from './number-button/number-button.component';
 import { MatRippleModule } from '@angular/material/core';
+import { SettingsViewComponent } from './settings-view/settings-view.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainViewComponent,
-    NumberButtonComponent
+    NumberButtonComponent,
+    SettingsViewComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="menuBtn" aria-label="Menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+      <mat-icon>history</mat-icon>
+      <span>History</span>
+  </button>
+  <button mat-menu-item [routerLink]="'/settings'">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+  </button>
+</mat-menu>
