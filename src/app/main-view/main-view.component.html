@@ -1,7 +1,20 @@
 <div class="wrapper">
   <div class="mathExpressionWrapper">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menuBtn" aria-label="Menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>history</mat-icon>
+        <span>History</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+    </mat-menu>
     <span class="mathExpression" *ngIf="!mathExpression.length">0</span>
-    <div class="mathExpression" #mathExprDiv>{{ mathExpression.join(' ') }}</div>
+    <div class="mathExpression" #mathExprDiv>{{ mathExpression.join('') }}</div>
     <div class="instantResult">
       <span *ngIf="instantResult">{{ instantResult }}</span>
     </div>
