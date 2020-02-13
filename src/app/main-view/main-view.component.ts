@@ -7,7 +7,7 @@ const isNumber = (value: any) => {
 };
 
 const buttonsContent = [
-  1, 2, 3, '÷', 'pow',
+  1, 2, 3, '÷', '^',
   4, 5, 6, '×', 'sqrt',
   7, 8, 9, '+', '-',
   0, '.', 'CE', 'C', '='
