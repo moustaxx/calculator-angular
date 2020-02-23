@@ -14,6 +14,12 @@ const buttonsContent = [
 ] as const;
 type TButtonItemContent = typeof buttonsContent[number];
 
+export interface IHistoryElement {
+  expression: string[];
+  timestamp: number;
+  result: number;
+}
+
 @Component({
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss']
@@ -57,6 +63,16 @@ export class MainViewComponent implements AfterViewChecked {
   getResult() {
     const expression = this.getMathExpressionString();
     const result = mexp.eval(expression);
+
+    const history: IHistoryElement[] = JSON.parse(localStorage.getItem('history') as string) || [];
+    const historyElement: IHistoryElement = {
+      expression: this.mathExpression,
+      timestamp: Date.now(),
+      result
+    };
+    const newHistory = [historyElement, ...history];
+    localStorage.setItem('history', JSON.stringify(newHistory));
+
     this.mathExpression = [String(result)];
     this.instantResult = null;
   }

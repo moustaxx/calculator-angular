@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button class="backBtn" aria-label="Back" [routerLink]="'/'">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span class="headingText">History</span>
+      <app-menu></app-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="content">
+    <mat-list>
+      <mat-list-item *ngFor="let el of history">
+        <div mat-line class="historyHeading">{{ el.expression.join('') + '=' + el.result }}</div>
+        <div mat-line> {{ getDateString(el.timestamp) }} </div>
+      </mat-list-item>
+    </mat-list>
+    <div class="nothingToShow" *ngIf="!history.length">Nothing to show...</div>
+  </div>
+  <button
+    mat-flat-button
+    class="clearAllBtn"
+    color="primary"
+    (click)="clearHistory()"
+  >Clear all
+  </button>
+</div>
