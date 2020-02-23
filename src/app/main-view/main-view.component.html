@@ -1,7 +1,6 @@
 <div class="wrapper">
   <app-menu class="menuBtnWrapper"></app-menu>
   <div class="mathExpressionWrapper">
-    <span class="mathExpression" *ngIf="!mathExpression.length">0</span>
     <div class="mathExpression" #mathExprDiv>{{ mathExpression.join('') }}</div>
     <div class="instantResult">
       <span *ngIf="instantResult">{{ instantResult }}</span>
