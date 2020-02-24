@@ -8,9 +8,10 @@ const isNumber = (value: any) => {
 
 const buttonsContent = [
   1, 2, 3, '÷', '^',
-  4, 5, 6, '×', 'sqrt',
+  4, 5, 6, '×', 'root',
   7, 8, 9, '+', '-',
-  0, '.', 'CE', 'C', '='
+  0, '.', 'sin', 'cos', 'tan',
+  '(', ')', 'CE', 'C', '='
 ] as const;
 type TButtonItemContent = typeof buttonsContent[number];
 
@@ -79,7 +80,7 @@ export class MainViewComponent implements AfterViewChecked {
 
   getInstantResult() {
     const lastOp = this.getLastOperation();
-    if (!isNumber(lastOp)) return;
+    if (!isNumber(lastOp) && lastOp !== ')') return;
 
     const expression = this.getMathExpressionString();
     try {
@@ -164,8 +165,8 @@ export class MainViewComponent implements AfterViewChecked {
           this.getInstantResult();
           return;
         }
-        const lastOp = this.getLastOperation();
-        if (!isNumber(lastOp) || lastOp === undefined) return;
+        // const lastOp = this.getLastOperation();
+        // if (!isNumber(lastOp) || lastOp === undefined) return;
 
         this.addOperation(event);
         break;
