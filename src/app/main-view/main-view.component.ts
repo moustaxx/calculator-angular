@@ -141,6 +141,12 @@ export class MainViewComponent implements AfterViewChecked {
     this.addOperation('-');
   }
 
+  // handleNotRepeatedOp(operation: string) {
+  //   if (this.getLastOperation() === operation) return;
+  //   this.addOperation(operation);
+  //   this.getInstantResult();
+  // }
+
   dispatchAction(event: TButtonItemContent) {
     switch (event) {
       case 'C':
@@ -158,6 +164,10 @@ export class MainViewComponent implements AfterViewChecked {
         break;
       case '-':
         this.handleMinus();
+        break;
+      case ')':
+        this.addOperation(event);
+        this.getInstantResult();
         break;
       default:
         if (typeof event === 'number') {
