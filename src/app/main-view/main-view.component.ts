@@ -8,7 +8,7 @@ const isNumber = (value: any) => {
 
 const buttonsContent = [
   1, 2, 3, '÷', '^',
-  4, 5, 6, '×', 'root',
+  4, 5, 6, '×', '√',
   7, 8, 9, '+', '-',
   0, '.', 'sin', 'cos', 'tan',
   '(', ')', 'CE', 'C', '='
@@ -58,7 +58,8 @@ export class MainViewComponent implements AfterViewChecked {
     return this.mathExpression
       .join('')
       .split('÷').join('/')
-      .split('×').join('*');
+      .split('×').join('*')
+      .split('√').join('root');
   }
 
   getResult() {
@@ -166,6 +167,10 @@ export class MainViewComponent implements AfterViewChecked {
         this.handleMinus();
         break;
       case ')':
+        this.addOperation(event);
+        this.getInstantResult();
+        break;
+      case '√':
         this.addOperation(event);
         this.getInstantResult();
         break;
